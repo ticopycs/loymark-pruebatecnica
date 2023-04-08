@@ -5,11 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserActivitiesComponent } from './components/user-activities/user-activities.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,11 @@ import { NavbarComponent } from './components/navbar/navbar/navbar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatSelectModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
