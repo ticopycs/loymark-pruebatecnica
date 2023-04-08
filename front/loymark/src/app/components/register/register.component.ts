@@ -1,10 +1,9 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Usuario } from 'src/app/models/usuarios/usuario.model';
 import { UsuarioService } from 'src/app/services/usuarios/usuario.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,14 +12,17 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+  
   form! : FormGroup;
+  submitted = false;
+  loading = false;
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _datePipe: DatePipe,
     private _usuarioService: UsuarioService,
-    private _alert: MatDialog,
-    private _router: Router
+    private _alert: ToastrService,
+    private _router: RouterModule,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -36,27 +38,29 @@ export class RegisterComponent {
   }
 
   register() {
-    const USER : Usuario = {
-      id: '',
-      nombre: this.form.value.nombre,
-      apellido: this.form.value.apellido,
-      email: this.form.value.email,
-      fechaNacimiento: this.form.value.fechaNacimiento,
-      telefono: this.form.value.telefono,
-      pais: this.paisCode(this.form.value.pais),
-      contacto: this.form.value.contacto,
-      insertedAt: new Date(),
-      updatedAt: new Date()
-    }
-    this._usuarioService.register(USER).subscribe(() =>{
-      this._alert.('El empleado fue registrado exitosamente', 'Empleado registrado', {
-       positionClass: 'toast-top-center'
+    const user  = new Usuario; 
+    
+    user.id,
+    user.nombre = this.form.value.nombre,
+    user.apellido = this.form.value.apellido,
+    user.email = this.form.value.email,
+    user.fechaNacimiento = this.form.value.fechaNacimiento,
+    user.telefono = this.form.value.telefono,
+    user.pais = this.paisCode(this.form.value.pais),
+    user.contacto = this.form.value.contacto,
+    user.insertedAt = new Date(),
+    user.updatedAt = new Date()
+    
+    this.loading = true;
+    this._usuarioService.register(user).subscribe(r =>{
+      this._alert.success("El usuario fue registrado exitosamente", "Usuario registrado", {
+       positionClass: "toast-top-center"
       });
-      this.router.navigate(['list-empleados']);
-     }).catch(error => {
-       console.log(error);
-       this.loading = false
-     })
+      this.router.navigate(['']);
+     }, (error) => {
+      this._alert.error("El usuario no pudo ser registrado. Intente nuevamente", "Error")
+     });
+     
   }
 
   paisCode(pais: String): String{
