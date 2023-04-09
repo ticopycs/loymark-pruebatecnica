@@ -10,12 +10,14 @@ import { environment } from 'src/environments/environment';
 })
 export class UsuarioService extends BaseService<Usuario>{
   private readonly controller = 'Usuarios';
+  apiUrl = environment.apiUrl;
+ 
   constructor(private http: HttpClient) { 
       super(http, "Usuario")
     }
 
     register(user: Usuario) {
-      let url: string = `${this.controller}/register`;
+      let url: string = `${this.apiUrl+this.controller}/register`;
       return this.http.post(url, user).pipe(
         map((response) => {
           return response;

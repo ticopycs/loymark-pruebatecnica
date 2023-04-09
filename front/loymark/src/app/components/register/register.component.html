@@ -1,56 +1,49 @@
-<div class="container pt-4">
-    <div class="row">
-        <div class="col-lg-6 offset-lg-3">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h3>REGISTRAR USUARIO</h3>
-
-                    <form class="mt-4" [formGroup]="form" (ngSubmit)="register()">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" id="nombre" class="form-control form-control-lg" formControlName="nombre"
-                                    placeholder="Nombre">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control form-control-lg" formControlName="apellido"
-                                    placeholder="Apellido">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control form-control-lg" formControlName="email"
-                                    placeholder="Correo electrónico">
-                            </div>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Fecha de Nacimiento</mat-label>
-                                <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento"
-                                    placeholder="Fecha de Nacimiento">
-                                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
-                            <div class="col">
-                                <input type="text" class="form-control form-control-lg" formControlName="telefono"
-                                    placeholder="Teléfono">
-                            </div>
-                            <div class="col form-control form-control-lg">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Pais de Residencia</mat-label>
-                                    <mat-select formControlName="pais" name="pais">
-                                        <mat-option *ngFor="let pais of paises" [value]="pais.codigo">
-                                            {{pais.nombre}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-
-                            <div class="col"> ¿Desea recibir información y actualizaciones?
-                                <input type="checkbox" class="form-control form-control-lg" formControlName="contacto">
-                            </div>
-                        </div>
-                        <div class="mt-3">
-                            <button type="submit" [disabled]="form.invalid" class="btn btn-primary btn-lg">CONFIRMAR</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<body>
+    <div class="container">
+      <h1>Registro de usuarios</h1>
+      <form [formGroup]="form" (ngSubmit)="register()">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" formControlName="nombre">
+          <mat-error *ngIf="form.get('nombre')?.invalid">El nombre es requerido y solo puede contener letras.</mat-error>
         </div>
+        <div class="form-group">
+          <label for="apellido">Apellido:</label>
+          <input type="text" class="form-control" id="apellido" formControlName="apellido">
+          <mat-error *ngIf="form.get('apellido')?.invalid">El apellido es requerido y solo puede contener letras.</mat-error>
+        </div>
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de nacimiento:</label>
+          <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
+            <mat-error *ngIf="form.get('fechaNacimiento')?.invalid">La fecha de nacimiento es requerida.</mat-error>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" class="form-control" id="telefono" formControlName="telefono">
+          <mat-error *ngIf="form.get('telefono')?.invalid">El telefono solo puede contener números.</mat-error>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" id="email" formControlName="email">
+          <mat-error *ngIf="form.get('email')?.invalid">El email es requerido y debe tener un formato valido ('x@dom.com')</mat-error>
+        </div>
+        <div class="form-group">
+          <label for="paisResidencia">País de residencia:</label>
+          <mat-select class="form-control" id="paisResidencia" formControlName="pais">
+            <mat-option *ngFor="let pais of paises" [value]="pais.codigo">
+                {{pais.nombre}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('paisResidencia')?.invalid">El pais de residencia es requerido</mat-error>
+        </div>
+        <div class="form-check">
+          <input type="checkbox" class="form-check-input" id="aceptaInformacion" formControlName="contacto">
+          <label class="form-check-label" for="aceptaInformacion">Desea recibir información</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar usuario</button>
+      </form>
     </div>
-</div>

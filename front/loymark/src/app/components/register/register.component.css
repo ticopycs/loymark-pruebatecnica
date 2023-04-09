@@ -1,0 +1,12 @@
+::ng-deep .mat-select-panel {
+    position: absolute !important;
+  }
+  
+::ng-deep .mat-datepicker-popup {
+    position: absolute !important;
+  }
+  
+::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex .mat-form-field-infix {
+    padding: 0 !important;
+  }
+  
