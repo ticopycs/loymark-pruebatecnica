@@ -5,11 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -26,6 +29,8 @@ import { NavbarComponent } from './components/navbar/navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
+    MatPaginatorModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,

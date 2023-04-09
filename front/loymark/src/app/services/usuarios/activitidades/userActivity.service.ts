@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from 'ng-base-service';
 import { map } from 'rxjs';
-import { Usuario } from 'src/app/models/usuarios/usuario.model';
+import { UserActivity } from 'src/app/models/userActivities/userActivity.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService extends BaseService<Usuario>{
+export class UserActivityService extends BaseService<UserActivity>{
   private readonly controller = 'Usuarios';
   apiUrl = environment.apiUrl;
  
@@ -16,13 +16,13 @@ export class UsuarioService extends BaseService<Usuario>{
       super(http, "Usuario")
   }
 
-    register(user: Usuario) {
-      let url: string = `${this.apiUrl+this.controller}/register`;
-      return this.http.post(url, user).pipe(
+    public override getAll(): any {
+      let url: string = `${this.apiUrl+this.controller}/getAllOrder`;
+      return this.http.get(url).pipe(
         map((response) => {
-          return response;
+          return response
         })
-      );
+      )
     }
 
 }

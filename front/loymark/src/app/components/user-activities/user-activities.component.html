@@ -1,1 +1,18 @@
 <p>user-activities works!</p>
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="nombreCompleto">
+        <mat-header-cell *matHeaderCellDef>Nombre Completo</mat-header-cell>
+        <mat-cell *matCellDef="let actividad">{{ actividad.usuario.nombre }} {{ actividad.usuario.apellido }}</mat-cell>
+      </ng-container>
+      
+    <ng-container matColumnDef="fecha">
+        <mat-header-cell *matHeaderCellDef>Fecha de Actividad</mat-header-cell>
+        <mat-cell *matCellDef="let actividad">{{ actividad.fecha | date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="detalle">
+        <mat-header-cell *matHeaderCellDef>Detalle de Actividad</mat-header-cell>
+        <mat-cell *matCellDef="let actividad">{{ actividad.detalle }}</mat-cell>
+    </ng-container>
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
