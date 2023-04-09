@@ -9,11 +9,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserActivityService extends BaseService<UserActivity>{
-  private readonly controller = 'Usuarios';
+  private readonly controller = 'Actividades';
   apiUrl = environment.apiUrl;
  
   constructor(private http: HttpClient) { 
-      super(http, "Usuario")
+      super(http, "Actividades")
   }
 
     public override getAll(): any {

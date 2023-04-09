@@ -1,18 +1,10 @@
-<p>user-activities works!</p>
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="nombreCompleto">
-        <mat-header-cell *matHeaderCellDef>Nombre Completo</mat-header-cell>
-        <mat-cell *matCellDef="let actividad">{{ actividad.usuario.nombre }} {{ actividad.usuario.apellido }}</mat-cell>
-      </ng-container>
-      
-    <ng-container matColumnDef="fecha">
-        <mat-header-cell *matHeaderCellDef>Fecha de Actividad</mat-header-cell>
-        <mat-cell *matCellDef="let actividad">{{ actividad.fecha | date }}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="detalle">
-        <mat-header-cell *matHeaderCellDef>Detalle de Actividad</mat-header-cell>
-        <mat-cell *matCellDef="let actividad">{{ actividad.detalle }}</mat-cell>
-    </ng-container>
-</mat-table>
-<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+<div class="container">
+    <div class="table-container">
+        <div style="height: 500px; width: 100%;">
+            <ngx-datatable class="material" [rows]="actividades" [columns]="displayedColumns">
+                <ngx-datatable-column name="Nombre" prop="nombre"></ngx-datatable-column>
+                <ngx-datatable-column name="Fecha Creación" prop="fechaCracion"></ngx-datatable-column>
+                <ngx-datatable-column name="Detalle de Actividad" prop="actividad"></ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>

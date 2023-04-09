@@ -12,7 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -29,6 +29,7 @@ import { NavbarComponent } from './components/navbar/navbar/navbar.component';
   ],
   imports: [
     BrowserModule,
+    NgxDatatableModule,
     MatTableModule,
     MatPaginatorModule,
     HttpClientModule,
